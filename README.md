@@ -12,6 +12,16 @@
   <img src="https://img.shields.io/badge/uv-Package%20Manager-blueviolet" alt="uv">
 </p>
 
+<br>
+
+<p align="center">
+  <img src="./snake.webp" alt="Snake Game created by the AI coding agent" width="700">
+</p>
+
+<p align="center">
+  🐍 <strong>One of the projects created and improved using this AI coding agent</strong>
+</p>
+
 ---
 
 ## 📌 Overview
