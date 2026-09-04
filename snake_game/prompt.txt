@@ -1,0 +1,114 @@
+# Snake Game in Python - Development Prompt
+
+## Overview
+Build a classic Snake game in Python where the player controls a snake that grows longer as it eats food. The game ends when the snake collides with itself or the walls. The objective is to achieve the highest possible score.
+
+## Technical Requirements
+
+### Language & Libraries
+- **Language:** Python 3.8+
+- **Required Library:** `pygame` (for graphics, input handling, and game loop)
+- **Optional:** `random` (stdlib), `sys` (stdlib), `time` (stdlib)
+- Install pygame via: `pip install pygame`
+
+### Game Configuration
+- Screen size: 600x400 pixels (or 800x600 for larger play area)
+- Grid size: 20x20 pixel cells
+- Frame rate: 10-15 FPS (adjustable for difficulty)
+- Color scheme: Green snake, red food, black background, white text
+
+## Core Features
+
+### 1. Game Elements
+- **Snake:** A list of (x, y) coordinate tuples representing the snake's body segments
+- **Food:** A randomly spawned (x, y) coordinate that does not overlap with the snake
+- **Score:** Integer counter that increases each time food is eaten
+- **Game States:** `PLAYING`, `GAME_OVER`, possibly `PAUSED` and `START_SCREEN`
+
+### 2. Movement & Controls
+- Snake moves continuously in its current direction on each tick
+- Use arrow keys (UP, DOWN, LEFT, RIGHT) to change direction
+- Snake cannot reverse directly onto itself (e.g., moving right, cannot immediately move left)
+- Optional: WASD keys as alternative controls
+- Optional: Spacebar to pause/resume the game
+
+### 3. Game Mechanics
+- Snake moves one grid cell per tick
+- When the snake's head reaches the food coordinate, the snake grows by one segment and score increases by 1 (or more for bonus food)
+- New food spawns at a random grid position not occupied by the snake
+- Game over when:
+  - Snake's head collides with any wall (out of bounds), OR
+  - Snake's head collides with its own body
+
+### 4. Rendering
+- Background drawn each frame (black or checkered pattern)
+- Snake rendered as connected rectangles or a single polygon; head can be a distinct color/shape
+- Food rendered as a red square or circle
+- Score displayed at the top of the screen using a pygame font
+- Game Over screen showing final score and a prompt to restart (e.g., press R or SPACE)
+
+### 5. Game Loop Structure
+The main loop should follow this order:
+1. Handle events (quit, key presses)
+2. Update game state (move snake, check collisions, check food consumption)
+3. Render frame (draw background, snake, food, score)
+4. Control frame rate with `clock.tick(FPS)`
+
+## Code Structure
+
+Organize the code into clearly separated functions/classes:
+
+- `main()` — Entry point, initializes pygame and runs the game loop
+- `Game` class or module containing:
+  - `__init__()` — Set up screen, clock, colors, fonts, initial snake position and food
+  - `handle_events()` — Process keyboard input
+  - `update()` — Move snake, check collisions, handle food eating
+  - `spawn_food()` — Generate new food at a valid random position
+  - `draw()` — Render all game elements to the screen
+  - `show_game_over()` — Display the game over screen
+- Helper functions:
+  - `random_grid_position()` — Returns a random (x, y) aligned to the grid
+  - `draw_text()` — Utility for rendering centered text
+
+## Stretch Goals (Optional Enhancements)
+- Increasing difficulty: speed gradually increases as score grows
+- High score persistence: save and load the best score to/from a file (e.g., `highscore.txt`)
+- Sound effects: eat sound, game over sound (using `pygame.mixer`)
+- Wrap-around mode: snake passes through walls and appears on the opposite side
+- Obstacles: static walls placed in the playing field
+- Multiple food types: regular (1 point), bonus (3 points, disappears after a few seconds)
+- Pause functionality
+- Start menu with difficulty selection
+- Animated game over effect
+- Two-player mode on the same keyboard
+
+## Deliverables
+1. A single Python file (e.g., `snake_game.py`) that runs the game with `python snake_game.py`
+2. A `README.md` with:
+   - Description of the game
+   - Installation instructions (including `pip install pygame`)
+   - How to play (controls and objective)
+   - Screenshots or GIFs (optional)
+   - Credits
+3. Clean, well-commented code following PEP 8 style guidelines
+4. No external assets required beyond pygame (all graphics drawn programmatically)
+
+## Acceptance Criteria
+- Game launches without errors
+- Snake responds smoothly to arrow key input
+- Snake cannot reverse onto itself
+- Food spawns in valid positions only
+- Score updates correctly when food is eaten
+- Snake grows visually when food is consumed
+- Game over triggers correctly on wall and self-collision
+- Game can be restarted after game over
+- Code is modular, readable, and commented
+
+## Tips
+- Use `pygame.Rect` or simple `pygame.draw.rect()` for drawing
+- Keep the game state in a `Game` class to make restart logic clean
+- Separate input handling from game logic for easier testing
+- Use `pygame.time.Clock()` to keep the frame rate consistent
+- Cap the FPS so the game does not run too fast on different machines
+
+Good luck, and have fun building the Snake game! 🐍
